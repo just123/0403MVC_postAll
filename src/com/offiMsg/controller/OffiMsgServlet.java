@@ -96,12 +96,13 @@ public class OffiMsgServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("errorMsgs:"+errorMsgs);
 			
 			String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑: 可能為【/offiMsg/listAllOffiMsg.jsp】
 			try {
 				/***************************1.接收請求參數****************************************/
 				String offiMsg_Id =new String(req.getParameter("offiMsg_Id"));
-				
+				System.out.println("offiMsg_Id:"+offiMsg_Id);
 				/***************************2.開始查詢資料****************************************/
 				OffiMsgService offiMsgSvc = new OffiMsgService();
 				OffiMsgVO offiMsgVO = offiMsgSvc.getOneOffiMsg(offiMsg_Id);
@@ -109,6 +110,7 @@ public class OffiMsgServlet extends HttpServlet {
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("offiMsgVO", offiMsgVO);     // 資料庫取出的offiMsgVO物件,存入req
 				String url = "/offiMsg/update_offiMsg_input.jsp";
+				System.out.println("url:"+url);
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_offiMsg_input.jsp
 				successView.forward(req, res);
 				
@@ -128,12 +130,13 @@ public class OffiMsgServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-		
+			System.out.println(errorMsgs);
 			String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑: 可能為【/offiMsg/listAllOffiMsg.jsp】
 			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String offiMsg_Id = req.getParameter("offiMsg_Id").trim();
+				System.out.println(offiMsg_Id);
 				String offiMsg_empId = req.getParameter("offiMsg_empId").trim();
 				
 				//offiMsg_Title文章標題錯誤判斷
@@ -183,10 +186,11 @@ public class OffiMsgServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 //				PostService postSvc = new PostService();
-//				if(requestURL.equals("/post/listPost_Responses_ByPost_Id.jsp") || requestURL.equals("/post/listAllPost.jsp"))
-//					req.setAttribute("listPost_Responses_ByPost_Id",postSvc.getPost_ResponsesByPost_Id(post_Id)); // 資料庫取出的list物件,存入request
-                
+//				
+				req.setAttribute("offiMsgVO", offiMsgVO);     // 資料庫取出的offiMsgVO物件,存入req
+				System.out.println(offiMsgVO);
 				String url = requestURL;
+				System.out.println(requestURL);
 				RequestDispatcher successView = req.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
 				successView.forward(req, res);
 

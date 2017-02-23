@@ -41,7 +41,7 @@
 	
 	<servlet>
 		<servlet-name>OffiMsgServlet</servlet-name>
-		<servlet-class>com.offiMsg.controller.PostServlet</servlet-class>
+		<servlet-class>com.offiMsg.controller.OffiMsgServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>OffiMsgServlet</servlet-name>

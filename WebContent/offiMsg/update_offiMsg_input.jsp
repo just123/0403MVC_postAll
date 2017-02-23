@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.offiMsg.model.*"%>
 <%
-OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO"); //OffiMsgServlet.java (Concroller), ¦s¤JreqªºOffiMsgVOª«¥ó (¥]¬AÀ°¦£¨ú¥XªºOffiMsgVO, ¤]¥]¬A¿é¤J¸ê®Æ¿ù»~®ÉªºOffiMsgVOª«¥ó)
+OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("offiMsgVO"); //OffiMsgServlet.java (Concroller), å­˜å…¥reqçš„OffiMsgVOç‰©ä»¶ (åŒ…æ‹¬å¹«å¿™å–å‡ºçš„OffiMsgVO, ä¹ŸåŒ…æ‹¬è¼¸å…¥è³‡æ–™éŒ¯èª¤æ™‚çš„OffiMsgVOç‰©ä»¶)
 %>
 <html>
 <head>
-<title>°T®§¸ê®Æ­×§ï - update_offiMsg_input.jsp</title></head>
+<title>è¨Šæ¯è³‡æ–™ä¿®æ”¹ - update_offiMsg_input.jsp</title></head>
 <link rel="stylesheet" type="text/css" href="js/calendar.css">
 <script language="JavaScript" src="js/calendarcode.js"></script>
 <div id="popupcalendar" class="text"></div>
@@ -16,15 +16,15 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO"); //OffiMsgSe
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>°T®§¸ê®Æ­×§ï - update_offiMsg_input.jsp</h3>
-		<a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></td>
+		<h3>è¨Šæ¯è³‡æ–™ä¿®æ”¹ - update_offiMsg_input.jsp</h3>
+		<a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></td>
 	</tr>
 </table>
 
-<h3>°T®§¸ê®Æ­×§ï:</h3>
-<%-- ¿ù»~ªí¦C --%>
+<h3>è¨Šæ¯è³‡æ–™ä¿®æ”¹:</h3>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -33,30 +33,30 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO"); //OffiMsgSe
 	</font>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/offiMsg/offiMsg.do" name="form1">
 <table border="0">
 	<tr>
-		<td>°T®§½s¸¹:<font color=red><b>*</b></font></td>
+		<td>è¨Šæ¯ç·¨è™Ÿ:<font color=red><b>*</b></font></td>
 		<td><%=offiMsgVO.getOffiMsg_Id()%></td>
 	</tr>
 	<tr>
-		<td>µo¥¬­û¤u½s¸¹:<font color=red><b>*</b></font></td>
+		<td>ç™¼å¸ƒå“¡å·¥ç·¨è™Ÿ:<font color=red><b>*</b></font></td>
 		<td><%=offiMsgVO.getOffiMsg_empId()%></td>
 	</tr>
 	<tr>
-		<td>°T®§¼ĞÃD:</td>
+		<td>è¨Šæ¯æ¨™é¡Œ:</td>
 		<td><input type="TEXT" name="offiMsg_Title" size="45"	value="<%=offiMsgVO.getOffiMsg_Title()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>°T®§¤º®e:</td>
+		<td>è¨Šæ¯å…§å®¹:</td>
 		<td><input type="TEXT" name="offiMsg_Content" size="45"	value="<%=offiMsgVO.getOffiMsg_Content()%>" /></td>
 	</tr>
 	<tr>
 		<%
 		java.sql.Date date_SQL = new java.sql.Date(System.currentTimeMillis());
 		%>
-		<td>°T®§µo¥¬®É¶¡:</td>
+		<td>è¨Šæ¯ç™¼å¸ƒæ™‚é–“:</td>
 		<td><input class="cal-TextBox"
 			onFocus="this.blur()" size="9" readonly type="text"
 			name="offiMsg_Date"
@@ -73,12 +73,12 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO"); //OffiMsgSe
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="offiMsg_Id" value="<%=offiMsgVO.getOffiMsg_Id()%>">
-<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--±µ¦¬­ì°e¥X­×§ïªº¨Ó·½ºô­¶¸ô®|«á,¦A°eµ¹Controller·Ç³ÆÂà¥æ¤§¥Î-->
-<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--¥u¥Î©ó:istAllEmp.jsp-->
-<input type="submit" value="°e¥X­×§ï"></FORM>
+<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--æ¥æ”¶åŸé€å‡ºä¿®æ”¹çš„ä¾†æºç¶²é è·¯å¾‘å¾Œ,å†é€çµ¦Controlleræº–å‚™è½‰äº¤ä¹‹ç”¨-->
+<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--åªç”¨æ–¼:istAll.jsp-->
+<input type="submit" value="é€å‡ºä¿®æ”¹"></FORM>
 
-<br>°e¥X­×§ïªº¨Ó·½ºô­¶¸ô®|:<br><b>
+<br>é€å‡ºä¿®æ”¹çš„ä¾†æºç¶²é è·¯å¾‘:<br><b>
    <font color=blue>request.getParameter("requestURL"):</font> <%= request.getParameter("requestURL")%><br>
-   <font color=blue>request.getParameter("whichPage"):</font> <%= request.getParameter("whichPage")%> (¦¹½d¨Ò¥Ø«e¥u¥Î©ó:istAllEmp.jsp))</b>
+   <font color=blue>request.getParameter("whichPage"):</font> <%= request.getParameter("whichPage")%> (æ­¤ç¯„ä¾‹ç›®å‰åªç”¨æ–¼:istAllEmp.jsp))</b>
 </body>
 </html>
