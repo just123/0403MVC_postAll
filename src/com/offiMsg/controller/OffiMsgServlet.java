@@ -213,7 +213,8 @@ public class OffiMsgServlet extends HttpServlet {
 
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-String offiMsg_empId = req.getParameter("offiMsg_empId").trim();
+				String offiMsg_empId = req.getParameter("offiMsg_empId").trim();
+				System.out.println(offiMsg_empId);
 				
 				//offiMsg_Title文章標題錯誤判斷
 				String offiMsg_Title = null;
@@ -254,7 +255,7 @@ String offiMsg_empId = req.getParameter("offiMsg_empId").trim();
 			
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/offiMsg/listAllOffimsg.jsp";
+				String url = "/offiMsg/listAllOffiMsg.jsp";
 				System.out.println(url);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllOffiMsg.jsp
 				successView.forward(req, res);		

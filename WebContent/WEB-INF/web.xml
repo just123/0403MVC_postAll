@@ -40,6 +40,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>DBGifReader4</servlet-name>
+		<servlet-class>com.post.controller.DBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader4</servlet-name>
+		<url-pattern>/post/DBGifReader4</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>OffiMsgServlet</servlet-name>
 		<servlet-class>com.offiMsg.controller.OffiMsgServlet</servlet-class>
 	</servlet>

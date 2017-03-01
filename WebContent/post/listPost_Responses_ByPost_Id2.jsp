@@ -1,31 +1,36 @@
-listAllPost.jsp<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+listAllPost.jsp<%@ page contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.post.model.*" %>
+<%@ page import="com.post_Response.model.*" %>
+<%@ page import="com.post.controller.*" %>
+<%@ page import="com.post_Response.controller.*" %>
+
 
 <%--  - ${postVO.post_resNum} --%>
 
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
+<%-- æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼ --%>
 
 <jsp:useBean id="listPost_Responses_ByPost_Id" scope="request" type="java.util.Set" />
 <jsp:useBean id="postSvc" scope="page" class="com.post.model.PostService" />
 <html>
 <head>
-<title>¤å³¹¦^ÂĞ¯d¨¥ - listPost_Responses_ByPost_Id.jsp</title>
+<title>æ–‡ç« å›è¦†ç•™è¨€ - listPost_Responses_ByPost_Id.jsp</title>
 </head>
 <body bgcolor='white'>
 
-<b><font color=red>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</font></b>
+<b><font color=red>æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</font></b>
 <table border='1' cellpadding='5' cellspacing='0' width='1200'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>¤å³¹¦^ÂĞ¯d¨¥ - listPost_Responses_ByPost_Id.jsp</h3>
-		<a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a>
+		<h3>æ–‡ç« å›è¦†ç•™è¨€ - listPost_Responses_ByPost_Id.jsp</h3>
+		<a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a>
 		</td>
 	</tr>
 </table>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -36,19 +41,19 @@ listAllPost.jsp<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big
 
 <table border='1' bordercolor='#CCCCFF' width='1200'>
 	<tr>
-		<th>¯d¨¥(¦^ÂĞ)½s¸¹</th>
-		<th>·|­û½s¸¹(µo¤åªÌ)</th>
-		<th>¤å³¹½s¸¹</th>
-		<th>¤å³¹¯d¨¥¤º®e</th>
-		<th>µo§G®É¶¡</th>
-		<th>­×§ï®É¶¡</th>
-		<th>¤å³¹½s¸¹ ¡i¤å³¹¼ĞÃD¡j</th>
-		<th>­×§ï</th>
-		<th>§R°£</th>
+		<th>ç•™è¨€(å›è¦†)ç·¨è™Ÿ</th>
+		<th>æœƒå“¡ç·¨è™Ÿ(ç™¼æ–‡è€…)</th>
+		<th>æ–‡ç« ç·¨è™Ÿ</th>
+		<th>æ–‡ç« ç•™è¨€å…§å®¹</th>
+		<th>ç™¼ä½ˆæ™‚é–“</th>
+		<th>ä¿®æ”¹æ™‚é–“</th>
+		<th>æ–‡ç« ç·¨è™Ÿ ã€æ–‡ç« æ¨™é¡Œã€‘</th>
+		<th>ä¿®æ”¹</th>
+		<th>åˆªé™¤</th>
 	</tr>
 	
 	<c:forEach var="post_ResponseVO" items="${listPost_Responses_ByPost_Id}" >
-		<tr align='center' valign='middle' ${(post_ResponseVO.res_Id==param.res_Id) ? 'bgcolor=#CCCCFF':''}><!--±N­×§ïªº¨º¤@µ§¥[¤J¹ï¤ñ¦â¦Ó¤w-->
+		<tr align='center' valign='middle' ${(post_ResponseVO.res_Id==param.res_Id) ? 'bgcolor=#CCCCFF':''}><!--å°‡ä¿®æ”¹çš„é‚£ä¸€ç­†åŠ å…¥å°æ¯”è‰²è€Œå·²-->
 			<td>${post_ResponseVO.res_Id}</td>
 			<td>${post_ResponseVO.mem_Id}</td>
 			<td>${post_ResponseVO.post_Id}</td>
@@ -58,29 +63,29 @@ listAllPost.jsp<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big
 			<td>
 			<c:forEach var="postVO" items="${postSvc.all}">
                     <c:if test="${post_ResponseVO.post_Id==postVO.post_Id}">
-	                    ${postVO.post_Id}¡i<font color=orange>${postVO.post_title}</font>¡j
+	                    ${postVO.post_Id}ã€<font color=orange>${postVO.post_title}</font>ã€‘
                     </c:if>
                 </c:forEach>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/post_Response/post_Response.do">
-			    <input type="submit" value="­×§ï"> 
+			    <input type="submit" value="ä¿®æ”¹"> 
 			    <input type="hidden" name="res_Id"value="${post_ResponseVO.res_Id}">
-			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--°e¥X¥»ºô­¶ªº¸ô®|µ¹Controller-->
+			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
 			    <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/post_Response/post_Response.do">
-			    <input type="submit" value="§R°£">
+			    <input type="submit" value="åˆªé™¤">
 			    <input type="hidden" name="res_Id" value="${post_ResponseVO.res_Id}">
-			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--°e¥X¥»ºô­¶ªº¸ô®|µ¹Controller-->
+			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
 			    <input type="hidden" name="action"value="delete"></FORM>
 			</td>
 		</tr>
 	</c:forEach>
 </table>
 
-<br>¥»ºô­¶ªº¸ô®|:<br><b>
+<br>æœ¬ç¶²é çš„è·¯å¾‘:<br><b>
    <font color=blue>request.getServletPath():</font> <%= request.getServletPath()%><br>
    <font color=blue>request.getRequestURI(): </font> <%= request.getRequestURI()%> </b>
 </body>

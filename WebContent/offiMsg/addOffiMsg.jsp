@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.offiMsg.model.*"%>
 <%
@@ -7,7 +7,7 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO");
 
 <html>
 <head>
-<title>°T®§·s¼W - addOffiMsg.jsp</title></head>
+<title>è¨Šæ¯æ–°å¢ - addOffiMsg.jsp</title></head>
 <link rel="stylesheet" type="text/css" href="js/calendar.css">
 <script language="JavaScript" src="js/calendarcode.js"></script>
 <div id="popupcalendar" class="text"></div>
@@ -17,18 +17,18 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO");
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>°T®§·s¼W - addOffiMsg.jsp</h3>
+		<h3>è¨Šæ¯æ–°å¢ - addOffiMsg.jsp</h3>
 		</td>
 		<td>
-		   <a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">¦^­º­¶</a>
+		   <a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">å›é¦–é </a>
 	    </td>
 	</tr>
 </table>
 
-<h3>°T®§¸ê®Æ:</h3>
-<%-- ¿ù»~ªí¦C --%>
+<h3>è¨Šæ¯è³‡æ–™:</h3>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -37,25 +37,31 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO");
 	</font>
 </c:if>
 
-<FORM METHOD="post" ACTION="offiMsg.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/offiMsg/offiMsg.do" name="form1">
 <table border="0">
 
+ <jsp:useBean id="offiMsgSvc" scope="page" class="com.offiMsg.model.OffiMsgService" />
+	
 	<tr>
-		<td>µo¥¬­û¤u½s¸¹:</td>
-		<td><input type="TEXT" name="offiMsg_empId" size="45" 
-			value="<%= (offiMsgVO==null)? "§d¥Ã§Ó" : offiMsgVO.getOffiMsg_empId()%>" /></td>
-	</tr>
+		<td>ç™¼å¸ƒå“¡å·¥ç·¨è™Ÿ:<font color=red><b>*</b></font></td>
+		<td><select size="1" name="offiMsg_empId">
+			<c:forEach var="offiMsgVO" items="${offiMsgSvc.all}">
+				<option value="${offiMsgVO.offiMsg_empId}">${offiMsgVO.offiMsg_empId}
+			</c:forEach>
+		</select></td>
+			</tr>
+	
 	<tr>
-		<td>°T®§¼ĞÃD:</td>
+		<td>è¨Šæ¯æ¨™é¡Œ:</td>
 		<td>
 			<input type="TEXT" name="offiMsg_Title" size="45" 
-			onfocus="if(value =='½Ğ¿é¤J°T®§¼ĞÃD'){value=''}"
-			onblur="if(value ==''){value='½Ğ¿é¤J°T®§¼ĞÃD'}"
-			value="<%=(offiMsgVO == null) ? "½Ğ¿é¤J°T®§¼ĞÃD" : offiMsgVO.getOffiMsg_Title() %>" />
+			onfocus="if(value =='è«‹è¼¸å…¥è¨Šæ¯æ¨™é¡Œ'){value=''}"
+			onblur="if(value ==''){value='è«‹è¼¸å…¥è¨Šæ¯æ¨™é¡Œ'}"
+			value="<%=(offiMsgVO == null) ? "è«‹è¼¸å…¥è¨Šæ¯æ¨™é¡Œ" : offiMsgVO.getOffiMsg_Title() %>" />
 		</td>
 	</tr>
 	<tr>
-		<td>¤å³¹¤º®e</td>
+		<td>æ–‡ç« å…§å®¹</td>
 		<td><textarea rows="10" name="offiMsg_Content" class="content"
 			value="<%=(offiMsgVO == null) ? "" : offiMsgVO.getOffiMsg_Content()%>"></textarea></td>
 	</tr>
@@ -63,7 +69,7 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO");
 		<%
 		java.sql.Date date_SQL = new java.sql.Date(System.currentTimeMillis());
 		%>
-		<td>°T®§µo¥¬®É¶¡:</td>
+		<td>è¨Šæ¯ç™¼å¸ƒæ™‚é–“:</td>
 		<td><input class="cal-TextBox"
 			onFocus="this.blur()" size="9" readonly type="text"
 			name="offiMsg_Date"
@@ -78,8 +84,9 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("OffiMsgVO");
 
 </table>
 <br>
+<br> <input type="hidden" name="offiMsg_Date" value="<%=date_SQL%>">
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="°e¥X·s¼W"></FORM>
+<input type="submit" value="é€å‡ºæ–°å¢"></FORM>
 </body>
 
 </html>

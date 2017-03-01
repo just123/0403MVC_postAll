@@ -5,12 +5,17 @@
 <%@ page import="com.post.model.*"%>
 
 
+
 <!-- ==================================下面是HEAD部分=============================== -->
 
 <!DOCTYPE html>
 <html>
 <title>動物地圖討論區</title>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet"
@@ -34,7 +39,7 @@ body, h1, h2, h3, h4, h5 {
 <!-- w3-content defines a container for fixed size centered content, 
 and is wrapped around the whole page content, except for the footer in this example -->
 <div class="w3-content" style="max-width: 1400px">
-
+<%@ include file="/post/postnav.jsp" %>
 <!-- Header -->
 	<header class="w3-container w3-center w3-padding-32">
 		<h1><b>動物地圖討論區</b></h1>
@@ -167,28 +172,21 @@ and is wrapped around the whole page content, except for the footer in this exam
 	</div>
 <hr>
 					<!-- Labels / tags -->
-	<div class="w3-card-2 w3-margin">
-		<div class="w3-container w3-padding">
-			<h4>Tags</h4></div>
-		<div class="w3-container w3-white">
-			<p>
-			<span class="w3-tag w3-black w3-margin-bottom">Travel</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NewYork</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span>
-			<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
-			</p>
+		<div class="w3-card-2 w3-margin">
+			<div class="w3-container w3-padding">
+				<h4>Tags</h4>
+			</div>
+			<div class="w3-container w3-white">
+				<p><span class="w3-tag w3-black w3-margin-bottom">狗狗</span>
+				<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">貓咪</span>
+				<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">認養</span>
+				<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">流浪狗</span>
+				<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">流浪貓咪</span>
+				<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">AnimalMap</span>
+				<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">哈士奇</span>
+				<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">黃金獵犬</span></p>
+			</div>
 		</div>
-	</div>
 					
 			<!-- END Introduction Menu -->
 </div>
@@ -202,8 +200,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 		<!-- Footer -->
 		<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-	
-<!-- 			<button class="w3-btn w3-padding-large w3-margin-bottom">Next »</button> -->
+<!-- 		<button class="w3-btn w3-padding-large w3-margin-bottom">Next »</button> -->
 			<p>Powered by <a href="#" target="_blank">AnimalMap</a></p>
 		</footer>
 </body>

@@ -73,6 +73,8 @@ OffiMsgVO offiMsgVO = (OffiMsgVO) request.getAttribute("offiMsgVO"); //OffiMsgSe
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="offiMsg_Id" value="<%=offiMsgVO.getOffiMsg_Id()%>">
+<input type="hidden" name="offiMsg_empId" value="<%=offiMsgVO.getOffiMsg_empId()%>">
+
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--接收原送出修改的來源網頁路徑後,再送給Controller準備轉交之用-->
 <input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--只用於:istAll.jsp-->
 <input type="submit" value="送出修改"></FORM>
